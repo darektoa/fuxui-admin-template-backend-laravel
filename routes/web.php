@@ -8,8 +8,5 @@ Route::get('/', function () {
 });
 
 Route::get('/login', function () {
-    $credentials = request()->only(['email', 'password']);
-    Auth::guard('web')->attempt($credentials);
-
-    return 'OK';
-})->name('login.web');
+    return 'LOGIN';
+})->name('login');
