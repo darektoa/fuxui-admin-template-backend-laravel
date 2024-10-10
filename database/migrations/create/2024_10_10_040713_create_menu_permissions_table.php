@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_role_pivot', function (Blueprint $table) {
-            $table->id();
-            $table->foreignUlid('user_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreignUlid('role_id')->constrained('user_roles')->cascadeOnUpdate()->cascadeOnDelete();
+        Schema::create('menu_permissions', function (Blueprint $table) {
+            $table->ulid('id')->primary();
+            $table->foreignUlid('menu_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('name');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_role_pivot');
+        Schema::dropIfExists('menu_permissions');
     }
 };

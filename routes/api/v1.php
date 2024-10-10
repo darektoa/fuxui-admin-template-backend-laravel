@@ -9,5 +9,6 @@ Route::middleware(['auth:api'])->group(function() {
         Route::apiResource('roles', User\RoleController::class);
     });
 
+    Route::apiResource('menu', Menu\MenuController::class);
     Route::apiResource('users', User\UserController::class);
 });

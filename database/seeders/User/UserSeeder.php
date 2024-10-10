@@ -10,16 +10,6 @@ use Illuminate\Database\Seeder;
 class UserSeeder extends Seeder
 {
     /**
-     * Running before run() method
-     */
-    public function before(): void
-    {
-        $this->call([
-            RoleSeeder::class,
-        ]);
-    }
-
-    /**
      * Run the database seeds.
      */
     public function run(): void
@@ -55,6 +45,17 @@ class UserSeeder extends Seeder
 
         User::insert($users->toArray());
         $this->after();
+    }
+
+
+    /**
+     * Running before run() method
+     */
+    public function before(): void
+    {
+        $this->call([
+            RoleSeeder::class,
+        ]);
     }
 
 

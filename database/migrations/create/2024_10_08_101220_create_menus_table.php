@@ -15,12 +15,14 @@ return new class extends Migration
             $table->ulid('id')->primary();
             $table->foreignUlid('menu_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('codename', 32)->index();
+            $table->string('icon_uri');
             $table->string('name', 32);
-            $table->string('uri');
+            $table->string('uri')->nullable();
             $table->boolean('is_external_uri')->default(false);
-            $table->string('desc', 255);
-            $table->integer('depth')->default(0);
-            $table->integer('order')->default(1);
+            $table->string('description')->nullable();
+            $table->string('tooltip', 100)->nullable();
+            $table->unsignedTinyInteger('depth')->default(0);
+            $table->unsignedInteger('order')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });
