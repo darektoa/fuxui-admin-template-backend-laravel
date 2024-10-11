@@ -5,7 +5,7 @@ namespace App\Models\Menu\Permission;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class UserPivot extends Pivot
+class UserRolePivot extends Pivot
 {
     use SoftDeletes;
 

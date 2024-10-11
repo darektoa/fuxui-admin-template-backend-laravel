@@ -4,8 +4,8 @@
   "settings": {
     "width": 4000,
     "height": 4000,
-    "scrollTop": -1548.0179,
-    "scrollLeft": -1548.1421,
+    "scrollTop": -1534.0179,
+    "scrollLeft": -1476.1421,
     "zoomLevel": 0.71,
     "show": 431,
     "database": 4,
@@ -456,19 +456,19 @@
         "id": "yFPz1e7KBFj5YroVdGYdM",
         "tableId": "nThqiM6wYr5lYqOqczqEX",
         "name": "is_external_uri",
-        "comment": "",
-        "dataType": "BOOLEAN",
-        "default": "FALSE",
+        "comment": "0=false; 1=true;",
+        "dataType": "TINYINT",
+        "default": "0",
         "options": 8,
         "ui": {
           "keys": 0,
           "widthName": 84,
-          "widthComment": 60,
+          "widthComment": 90,
           "widthDataType": 60,
           "widthDefault": 60
         },
         "meta": {
-          "updateAt": 1728530076679,
+          "updateAt": 1728634652536,
           "createAt": 1728530060262
         }
       },
@@ -1985,9 +1985,10 @@
       -1,
       {
         "name": 1728530065470,
-        "dataType": 1728530070947,
+        "dataType": 1728634632679,
         "options(notNull)": 1728530073258,
-        "default": 1728530076678
+        "default": 1728634627102,
+        "comment": 1728634652535
       }
     ],
     "Mm4FQ-urwhMPb8slzeBvb": [

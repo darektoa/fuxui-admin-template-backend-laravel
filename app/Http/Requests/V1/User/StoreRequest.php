@@ -22,14 +22,14 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'roleId'       => 'required|max:26|exists:user_roles,id',
+            'roleId'        => 'required|max:26|exists:user_roles,id',
             'email'         => 'required|max:255|email|unique:users',
             'username'      => 'required|max:20|unique:users',
             'firstname'     => 'required|max:32',
-            'lastname'      => 'max:32',
-            'birthDate'    => 'required|date',
-            'birthPlace'   => 'required|max:100',
-            'phoneNumber'  => 'required|max:20',
+            'lastname'      => 'nullable|max:32',
+            'birthDate'     => 'required|date',
+            'birthPlace'    => 'required|max:100',
+            'phoneNumber'   => 'required|max:20',
         ];
     }
 }

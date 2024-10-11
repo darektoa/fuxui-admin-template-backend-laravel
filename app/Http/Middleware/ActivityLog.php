@@ -21,6 +21,7 @@ class ActivityLog
         $parameters = $request->all();
         $headers = $request->header();
 
+        /** @disregard P1013, Method not indexed */
         ActivityLogModel::create([
             'access_token_id'   => Auth::check() ? Auth::user()->token()->id : null,
             'client_id'         => Auth::check() ? Auth::user()->token()->client_id : null,
@@ -29,8 +30,8 @@ class ActivityLog
             'url'               => $request->fullUrl(),
             'ip'                => $request->ip(),
             'user_agent'        => $request->userAgent(),
-            'parameters'        => $parameters ?: null,
-            'headers'           => $headers ?: null,
+            'parameters'        => $parameters ? json_encode($parameters): null,
+            'headers'           => $headers ? json_encode($headers): null,
         ]);
 
         $response = $next($request);

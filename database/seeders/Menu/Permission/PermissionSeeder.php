@@ -5,17 +5,17 @@ namespace Database\Seeders\Menu\Permission;
 use App\Models\Menu\Permission\{Permission, Type};
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Collection;
 
 class PermissionSeeder extends Seeder
 {
     /**
-     * Run the database seeds., 'W'
+     * Run the database seeds.
      */
     public function run(): void
     {
-        $permissionTypes = Type::oldest()->get();
-
-        $permissions = collect([
+        $permTypes      = Type::oldest()->get();
+        $permissions    = collect([
             [
                 'id'        => '01J9TTRZT8BP8MJ70791137CVX',
                 'menu_id'   => '01J9TCCAHGHJ0MRX7TY079H8MC', // HOME
@@ -38,6 +38,12 @@ class PermissionSeeder extends Seeder
             /**
              * MENU MANAGEMENT
              */
+            [
+                'id'        => '01J9WXPK0Q1WDZRQA7NYB9K6P1',
+                'menu_id'   => '01J9TCPRVGJ80BN253HTNR49Z8',
+                'name'      => 'Show On Sidebar',
+                'types'     => ['R'],
+            ],
             [
                 'id'        => '01J9TWVB8YBTS8QGZJS1R70EZ8',
                 'menu_id'   => '01J9TCPRVGJ80BN253HTNR49Z8',
@@ -85,6 +91,12 @@ class PermissionSeeder extends Seeder
              * MENU PERMISSION TYPE MANAGEMENT
              */
             [
+                'id'        => '01J9WXQF3B8YTKG55HTV8YQJ4R',
+                'menu_id'   => '01J9TD08T7GB79FPD1TGNBF3V2',
+                'name'      => 'Show On Sidebar',
+                'types'     => ['R'],
+            ],
+            [
                 'id'        => '01J9TWX9P8SAR4PRDR96MQB27A',
                 'menu_id'   => '01J9TD08T7GB79FPD1TGNBF3V2',
                 'name'      => 'List Table',
@@ -130,6 +142,12 @@ class PermissionSeeder extends Seeder
             /**
              * MENU PERMISSION MANAGEMENT
              */
+            [
+                'id'        => '01J9WXQR8VWACBF2RA5EA71ZKZ',
+                'menu_id'   => '01J9TD4HAWFEPSPKFT43771W6K',
+                'name'      => 'Show On Sidebar',
+                'types'     => ['R'],
+            ],
             [
                 'id'        => '01J9TWYY0F1TSKDRD7184BDJDV',
                 'menu_id'   => '01J9TD4HAWFEPSPKFT43771W6K',
@@ -177,6 +195,12 @@ class PermissionSeeder extends Seeder
              * USER MANAGEMENT
              */
             [
+                'id'        => '01J9WXR6WEG6FAWR32XPAYZJR4',
+                'menu_id'   => '01J9TCQ6G50TR26C8P5M7MRHM2',
+                'name'      => 'Show On Sidebar',
+                'types'     => ['R'],
+            ],
+            [
                 'id'        => '01J9TX077NQY7Q1JGG5HM373FK',
                 'menu_id'   => '01J9TCQ6G50TR26C8P5M7MRHM2',
                 'name'      => 'List Table',
@@ -223,6 +247,12 @@ class PermissionSeeder extends Seeder
              * USER ROLE MANAGEMENT
              */
             [
+                'id'        => '01J9WXRNFPFYSDP4B39HZAV8ZC',
+                'menu_id'   => '01J9TD08T7GB79FPD1TGNBF3V2',
+                'name'      => 'Show On Sidebar',
+                'types'     => ['R'],
+            ],
+            [
                 'id'        => '01J9TX1PWSVRXHQHCZTGMAH70V',
                 'menu_id'   => '01J9TD08T7GB79FPD1TGNBF3V2',
                 'name'      => 'List Table',
@@ -266,14 +296,48 @@ class PermissionSeeder extends Seeder
             ],
         ]);
 
-        $permissions = collect($permissions)->map(fn ($user, $index) => ([
-            ...$user,
-            'created_at'        => now()->addMinutes($index),
-            'updated_at'        => now()->addMinutes($index),
+
+        $this->insert($permissions);
+
+        $permTypes->where('name', 'Read')
+            ->first()
+            ->permissions()
+            ->attach($this->filterByType($permissions, 'R')->pluck('id'));
+
+        $permTypes->where('name', 'Write')
+            ->first()
+            ->permissions()
+            ->attach($this->filterByType($permissions, 'W')->pluck('id'));
+
+        $permTypes->where('name', 'Execute')
+            ->first()
+            ->permissions()
+            ->attach($this->filterByType($permissions, 'X')->pluck('id'));
+
+    }
+
+
+    /**
+     * Insert data to the model of this seeder
+     */
+    public function insert(array|Collection $data)
+    {
+        $data = collect($data)->map(fn($item, $index) => collect($item)->except('types')->merge([
+            'created_at' => now()->addMinutes($index),
+            'updated_at' => now()->addMinutes($index),
         ]));
 
-        Permission::insert($permissions->toArray());
+        return Permission::insert($data->toArray());
+    }
 
-        $permissionTypes[0]->permissions()->attach($permissions->contain);
+
+    /**
+     * Filter permission data by permission type initials
+     */
+    public function filterByType(Collection $data, string $permissionTypeInitials): Collection
+    {
+        return $data->filter(fn($item) => (
+            collect($item['types'])->contains($permissionTypeInitials)
+        ));
     }
 }

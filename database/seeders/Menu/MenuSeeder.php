@@ -2,10 +2,12 @@
 
 namespace Database\Seeders\Menu;
 
+use App\Models\Menu\Menu;
 use Database\Seeders\Menu\Permission\PermissionSeeder;
 use Database\Seeders\Menu\Permission\TypeSeeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Collection;
 
 class MenuSeeder extends Seeder
 {
@@ -16,7 +18,7 @@ class MenuSeeder extends Seeder
     {
         $this->before();
 
-        $users = [
+        $menus = [
             /**
              * HOME MENU
              */
@@ -92,7 +94,7 @@ class MenuSeeder extends Seeder
              * USER MANAGEMENT MENU
              */
             [
-                'id'                => '01J9TCPRVGJ80BN253HTNR49Z8',
+                'id'                => '01J9WV5HECVNTMV8SJAPB1HBQJ',
                 'menu_id'           => null,
                 'codename'          => 'USERGRP',
                 'icon_uri'          => 'https://example.com/icon.svg',
@@ -105,8 +107,8 @@ class MenuSeeder extends Seeder
                 'order'             => 3,
             ],
             [
-                'id'                => '01J9TCQ6G50TR26C8P5M7MRHM2',
-                'menu_id'           => null,
+                'id'                => '01J9WVKCD3BZH5N15BPZNCKHZB',
+                'menu_id'           => '01J9WV5HECVNTMV8SJAPB1HBQJ',
                 'codename'          => 'USER',
                 'icon_uri'          => 'https://example.com/icon.svg',
                 'name'              => 'Users',
@@ -118,8 +120,8 @@ class MenuSeeder extends Seeder
                 'order'             => 1,
             ],
             [
-                'id'                => '01J9TD08T7GB79FPD1TGNBF3V2',
-                'menu_id'           => '01J9TCPRVGJ80BN253HTNR49Z8',
+                'id'                => '01J9WVKHA8HX5AM535P9DDX89A',
+                'menu_id'           => '01J9WV5HECVNTMV8SJAPB1HBQJ',
                 'codename'          => 'USERROLE',
                 'icon_uri'          => 'https://example.com/icon.svg',
                 'name'              => 'Roles',
@@ -132,13 +134,32 @@ class MenuSeeder extends Seeder
             ],
         ];
 
-        $users = collect($users)->map(fn ($user, $index) => ([
-            ...$user,
-            'created_at'    => now()->addMinutes($index),
-            'updated_at'    => now()->addMinutes($index),
+        $this->creates($menus);
+        $this->after();
+    }
+
+
+    /**
+     * Insert data to the model of this seeder
+     */
+    public function insert(array|Collection $data)
+    {
+        $data = collect($data)->map(fn($item, $index) => collect($item)->merge([
+            'created_at' => now()->addMinutes($index),
+            'updated_at' => now()->addMinutes($index),
         ]));
 
-        $this->after();
+        return Menu::insert($data->toArray());
+    }
+
+    /**
+     * Insert data to the model of this seeder
+     */
+    public function creates(array|Collection $data)
+    {
+        $data = collect($data)->each(fn($item) => Menu::create($item));
+
+        return $data->count();
     }
 
 

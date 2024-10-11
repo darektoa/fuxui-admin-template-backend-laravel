@@ -11,6 +11,8 @@ class Type extends Model
 {
     use HasFactory, HasUlids;
 
+    protected $table = 'menu_permission_types';
+
     /**
      * The attributes that are guarded from mass assignable.
      *

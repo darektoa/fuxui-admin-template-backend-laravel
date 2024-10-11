@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Requests\V1\User\Role;
+namespace App\Http\Requests\V1\Menu\Permission;
 
-use App\Models\User\Role;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateRequest extends FormRequest
@@ -12,7 +11,7 @@ class UpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -22,11 +21,8 @@ class UpdateRequest extends FormRequest
      */
     public function rules(): array
     {
-        $roleId = $this->route('role');
-
         return [
-            'codename'  => "nullable|max:20|unique:user_roles,codename,$roleId,id",
-            'name'      => 'nullable|max:255'
+            //
         ];
     }
 }
