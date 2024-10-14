@@ -32,10 +32,15 @@ class RoleController extends Controller
     public function store(StoreRequest $request)
     {
         try {
+            $menuPermissions = $request->menuPermissions;
+
             $role = Role::create($request->only([
                 'codename',
                 'name',
             ]));
+
+            if($menuPermissions)
+                $role->permissions()->attach($menuPermissions);
 
             return ResponseHelper::created($role);
         } catch (ResponseException $exception) {
@@ -64,6 +69,7 @@ class RoleController extends Controller
     {
         try {
             $role = Role::find($id);
+            $menuPermissions = $request->menuPermissions;
 
             if(! $role)
                 throw new ResponseException('Role not found', 404);
@@ -72,6 +78,9 @@ class RoleController extends Controller
                 'codename',
                 'name',
             ]));
+
+            if($menuPermissions)
+                $role->permissions()->syncWithoutDetaching($menuPermissions);
 
             $role->update($data->toArray());
 

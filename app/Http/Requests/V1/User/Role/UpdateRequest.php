@@ -25,8 +25,9 @@ class UpdateRequest extends FormRequest
         $roleId = $this->route('role');
 
         return [
-            'codename'  => "nullable|max:20|unique:user_roles,codename,$roleId,id",
-            'name'      => 'nullable|max:255'
+            'codename'          => "nullable|max:20|unique:user_roles,codename,$roleId,id",
+            'name'              => 'nullable|max:255',
+            'menuPermissions'   => 'nullable|array',
         ];
     }
 }

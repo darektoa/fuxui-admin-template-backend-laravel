@@ -11,7 +11,7 @@ class StoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'menuId'    => 'required|min:26|max:26|exists:menus,id',
+            'name'      => 'required|max:100',
         ];
     }
 }

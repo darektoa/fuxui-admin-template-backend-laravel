@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('menu_permission_types', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->timestamps();
-            $table->softDeletes();
+        Schema::table('menu_permission_type_pivot', function (Blueprint $table) {
+            $table->foreignId('menu_permission_type_id')->change();
         });
     }
 
@@ -24,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('menu_permission_types');
+        Schema::table('menu_permission_type_pivot', function (Blueprint $table) {
+            $table->foreignUlid('menu_permission_type_id')->change();
+        });
     }
 };

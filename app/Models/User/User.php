@@ -4,6 +4,7 @@ namespace App\Models\User;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use App\Traits\Model\CamelCaseAttributes;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -14,7 +15,7 @@ use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, HasUlids, Notifiable, SoftDeletes;
+    use CamelCaseAttributes, HasApiTokens, HasFactory, HasUlids, Notifiable, SoftDeletes;
 
     /**
      * The attributes that are guarded from mass assignable.

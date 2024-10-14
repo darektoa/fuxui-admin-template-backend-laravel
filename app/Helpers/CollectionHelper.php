@@ -3,7 +3,7 @@
 namespace App\Helpers;
 
 use Illuminate\Pagination\{LengthAwarePaginator, Paginator};
-use Illuminate\Support\Collection;
+use Illuminate\Support\{Collection, Str};
 
 class CollectionHelper{
     static public function paginate(
@@ -17,10 +17,10 @@ class CollectionHelper{
             'path'      => Paginator::resolveCurrentPath(),
             'pageName'  => $pageName,
         ];
-        
+
         if(!($items instanceof Collection))
             $items = Collection::make($items);
-        
+
         return new LengthAwarePaginator(
             $items->skip(($page-1) * $perPage)->take($perPage),
             $items->count(),
@@ -31,7 +31,8 @@ class CollectionHelper{
     }
 
 
-    static public function getOrOld($nowData, $oldData, array $properties=[]) {
+    static public function getOrOld($nowData, $oldData, array $properties=[]): Collection
+    {
         $now        = collect($nowData);
         $old        = collect($oldData);
         $properties = empty($properties) ? $now->keys() : collect($properties);
@@ -40,5 +41,21 @@ class CollectionHelper{
         ));
 
         return $result;
+    }
+
+
+    static public function camelKeys(array|Collection $data): Collection
+    {
+        return collect($data)->mapWithKeys(fn($item, $key) => (
+            [Str::camel($key) => $item]
+        ));
+    }
+
+
+    static public function snakeKeys(array|Collection $data): Collection
+    {
+        return collect($data)->mapWithKeys(fn($item, $key) => (
+            [Str::snake($key) => $item]
+        ));
     }
 }

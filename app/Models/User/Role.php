@@ -4,6 +4,7 @@ namespace App\Models\User;
 
 use App\Models\Menu\Permission\Permission;
 use App\Models\Menu\Permission\UserRolePivot;
+use App\Traits\Model\CamelCaseAttributes;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,7 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Role extends Model
 {
-    use HasFactory, HasUlids, SoftDeletes;
+    use CamelCaseAttributes, HasFactory, HasUlids, SoftDeletes;
 
     protected $table = 'user_roles';
 

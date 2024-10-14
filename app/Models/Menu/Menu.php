@@ -2,15 +2,17 @@
 
 namespace App\Models\Menu;
 
+use App\Traits\Model\CamelCaseAttributes;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 
 class Menu extends Model
 {
-    use HasFactory, HasUlids;
+    use CamelCaseAttributes, HasFactory, HasUlids, SoftDeletes;
 
     /**
      * The attributes that are guarded from mass assignable.
