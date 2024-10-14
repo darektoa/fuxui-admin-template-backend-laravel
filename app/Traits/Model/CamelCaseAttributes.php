@@ -13,7 +13,7 @@ trait CamelCaseAttributes {
      */
     public static $snakeAttributes = true;
 
-    
+
     /**
      * Convert the model's attributes to an array.
      *
@@ -70,6 +70,17 @@ trait CamelCaseAttributes {
             return parent::getAttribute($key);
 
         return parent::getAttribute(Str::snake($key));
+    }
+
+    
+    /**
+     * Get all of the current attributes on the model for an insert operation.
+     *
+     * @return array
+     */
+    protected function getAttributesForInsert()
+    {
+        return parent::getAttributes();
     }
 
 
