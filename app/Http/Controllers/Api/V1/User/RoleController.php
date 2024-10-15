@@ -54,7 +54,7 @@ class RoleController extends Controller
     public function show(string $id)
     {
         try {
-            $role = Role::find($id);
+            $role = Role::with('permissions')->find($id);
 
             return ResponseHelper::make($role);
         } catch (ResponseException $exception) {

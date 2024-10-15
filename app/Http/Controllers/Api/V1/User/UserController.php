@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1\User;
 
 use App\Exceptions\ResponseException;
+use App\Helpers\CollectionHelper;
 use App\Helpers\ResponseHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\V1\User\StoreRequest;
@@ -78,17 +79,18 @@ class UserController extends Controller
             if(! $user)
                 throw new ResponseException('User not found', 404);
 
-            $data = collect([
-                'email'         => $request->email,
-                'username'      => $request->username,
-                'firstname'     => $request->firstname,
-                'lastname'      => $request->lastname,
-                'birth_date'    => $request->birthDate,
-                'birth_place'   => $request->birthPlace,
-                'phone_number'  => $request->phoneNumber,
-            ])->when(! Hash::check($request->password, $user->password), fn($collection) => (
-                $collection->put('password', Hash::make($request->password))
-            ));
+            $data = CollectionHelper::getOrOld($request->all(), $user, [
+                    'email',
+                    'username',
+                    'firstname',
+                    'lastname',
+                    'birthDate',
+                    'birthPlace',
+                    'phoneNumber',
+                ])
+                ->when(! Hash::check($request->password, $user->password), fn($collection) => (
+                    $collection->put('password', Hash::make($request->password))
+                ));
 
             $user->update($data->toArray());
             $user->roles()->sync($request->roleId);

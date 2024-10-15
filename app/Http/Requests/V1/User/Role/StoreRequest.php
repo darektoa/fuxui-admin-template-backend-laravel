@@ -25,6 +25,7 @@ class StoreRequest extends FormRequest
             'codename'          => 'required|max:20|unique:user_roles',
             'name'              => 'required|max:255',
             'menuPermissions'   => 'nullable|array',
+            'menuPermissions.*' => 'required|exists:menu_permissions,id'
         ];
     }
 }

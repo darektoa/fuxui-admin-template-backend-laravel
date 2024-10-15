@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Requests\V1\User;
+namespace App\Http\Requests\V1\Profile\Password;
 
-use App\Rules\MaxDate;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password;
 
-class StoreRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,15 +23,8 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'roleId'        => 'required|max:26|exists:user_roles,id',
-            'email'         => 'required|max:255|email|unique:users',
-            'username'      => 'required|max:20|unique:users',
-            'firstname'     => 'required|max:32',
-            'lastname'      => 'nullable|max:32',
-            'birthDate'     => ['nullable', 'date', new MaxDate(now()->format('Y-m-d'))],
-            'birthPlace'    => 'nullable|max:100',
-            'phoneNumber'   => 'required|max:20',
-            'password'      => [
+            'currentPassword'   => 'current_password:api',
+            'password'          => [
                 'required',
                 Password::min(8)
                     ->max(64)
@@ -41,7 +33,7 @@ class StoreRequest extends FormRequest
                     ->numbers()
                     ->symbols()
                     ->uncompromised(100)
-            ],
+            ]
         ];
     }
 }

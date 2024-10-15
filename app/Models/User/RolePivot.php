@@ -2,12 +2,13 @@
 
 namespace App\Models\User;
 
+use App\Traits\Model\CamelCaseAttributes;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class RolePivot extends Pivot
 {
-    use SoftDeletes;
+    use CamelCaseAttributes, SoftDeletes;
 
     protected $table = 'user_role_pivot';
 

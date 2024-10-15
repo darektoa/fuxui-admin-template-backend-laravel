@@ -23,6 +23,15 @@ class Type extends Model
         'id',
     ];
 
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        'pivot',
+    ];
+
 
     /**
      * Get permissions of the permission type
@@ -31,7 +40,12 @@ class Type extends Model
      */
     public function permissions(): BelongsToMany
     {
-        return $this->belongsToMany(Type::class, 'menu_permission_type_pivot', 'menu_permission_type_id', 'menu_permission_id')
+        return $this->belongsToMany(
+                related: Type::class,
+                table: 'menu_permission_type_pivot',
+                foreignPivotKey: 'menu_permission_type_id',
+                relatedPivotKey: 'menu_permission_id',
+            )
             ->using(MenuPermissionTypePivot::class)
             ->withTimestamps();
     }

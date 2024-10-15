@@ -21,6 +21,15 @@ class Role extends Model
         'id'
     ];
 
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        'pivot',
+    ];
+
 
     /**
      * Get the users of the user role
@@ -49,7 +58,7 @@ class Role extends Model
                 related: Permission::class,
                 table: 'menu_permission_user_role_pivot',
                 foreignPivotKey: 'user_role_id',
-                relatedPivotKey: 'menu_permission_id'
+                relatedPivotKey: 'menu_permission_id',
             )
             ->using(UserRolePivot::class)
             ->withTimestamps();

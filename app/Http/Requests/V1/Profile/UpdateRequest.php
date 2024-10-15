@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Requests\V1\User\Role;
+namespace App\Http\Requests\V1\Profile;
 
-use App\Models\User\Role;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateRequest extends FormRequest
@@ -22,13 +21,16 @@ class UpdateRequest extends FormRequest
      */
     public function rules(): array
     {
-        $roleId = $this->route('role');
+        $userId = auth('api')->id();
 
         return [
-            'codename'          => "nullable|max:20|unique:user_roles,codename,$roleId,id",
-            'name'              => 'nullable|max:255',
-            'menuPermissions'   => 'nullable|array',
-            'menuPermissions.*' => 'required|exists:menu_permissions,id'
+            'email'         => "nullable|max:255|unique:users,ermail,$userId,id",
+            'username'      => "nullable|max:20|unique:users,username,$userId,id",
+            'firstname'     => 'nullable|max:32',
+            'lastname'      => 'nullable|max:32',
+            'birthDate'     => 'nullable|date|max_date:test',
+            'birthPlace'    => 'nullable|max:100',
+            'phoneNumber'   => 'nullable|max:255',
         ];
     }
 }

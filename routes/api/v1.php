@@ -13,11 +13,16 @@ Route::middleware(['auth:api'])->group(function() {
         Route::apiResource('permissions', Menu\Permission\PermissionController::class);
     });
 
+    Route::prefix('/profile')->name('profile.')->group(function() {
+        Route::apiSingleton('password', Profile\PasswordController::class)->only(['update']);
+    });
+
     Route::prefix('/users')->name('users.')->group(function() {
         Route::apiResource('roles', User\RoleController::class);
         Route::apiResource('roles.menuPermissions', User\RoleController::class)->except(['show', 'update']);
     });
 
     Route::apiResource('menus', Menu\MenuController::class);
+    Route::apiSingleton('profile', Profile\ProfileController::class);
     Route::apiResource('users', User\UserController::class);
 });

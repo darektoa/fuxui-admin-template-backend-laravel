@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\V1\User;
 
+use App\Rules\MaxDate;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateRequest extends FormRequest
@@ -29,7 +30,7 @@ class UpdateRequest extends FormRequest
             'username'      => "nullable|max:20|unique:users,username,$userId,id",
             'firstname'     => 'nullable|max:32',
             'lastname'      => 'nullable|max:32',
-            'birthDate'     => 'nullable|date',
+            'birthDate'     => ['nullable', 'date', new MaxDate(now()->format('Y-m-d'))],
             'birthPlace'    => 'nullable|max:100',
             'phoneNumber'   => 'nullable|max:20',
         ];

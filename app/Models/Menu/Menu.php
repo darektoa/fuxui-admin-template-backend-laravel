@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 
@@ -60,5 +61,20 @@ class Menu extends Model
         $paths->push($this->id);
 
         return $paths;
+    }
+
+
+    /**
+     * Get menu permissions of the menu
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function permissions(): HasMany
+    {
+        return $this->hasMany(
+            related: Permission\Permission::class,
+            foreignKey: 'menu_id',
+            localKey: 'id',
+        );
     }
 }

@@ -33,6 +33,7 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
+        'pivot',
         'remember_token',
     ];
 
@@ -57,7 +58,12 @@ class User extends Authenticatable
      */
     public function roles() :BelongsToMany
     {
-        return $this->belongsToMany(Role::class, 'user_role_pivot', 'user_id', 'role_id')
+        return $this->belongsToMany(
+                related: Role::class,
+                table: 'user_role_pivot',
+                foreignPivotKey: 'user_id',
+                relatedPivotKey: 'role_id',
+            )
             ->using(RolePivot::class)
             ->withTimestamps();
     }
