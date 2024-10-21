@@ -19,7 +19,9 @@ class MenuController extends Controller
     public function index(Request $request)
     {
         try {
-            $menus = Menu::get();
+            $menus = Menu::with('menus.menus')
+                ->where('depth', 0)
+                ->get();
 
             return ResponseHelper::make($menus);
         } catch (ResponseException $exception) {

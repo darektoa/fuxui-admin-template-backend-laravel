@@ -37,6 +37,17 @@ class Menu extends Model
 
 
     /**
+     * Get realted menus of the current menu
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function menus() :HasMany
+    {
+        return $this->hasMany(Menu::class);
+    }
+
+
+    /**
      * Get root parent with spesific depth, default depth is 0
      *
      * @param int $depth
