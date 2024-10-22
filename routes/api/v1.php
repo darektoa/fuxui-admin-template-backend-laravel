@@ -25,4 +25,7 @@ Route::middleware(['auth:api'])->group(function() {
     Route::apiResource('menus', Menu\MenuController::class);
     Route::apiSingleton('profile', Profile\ProfileController::class);
     Route::apiResource('users', User\UserController::class);
+    Route::apiSingleton('setting', Setting\SettingController::class)->only('update');
 });
+
+Route::apiSingleton('setting', Setting\SettingController::class)->only('show');

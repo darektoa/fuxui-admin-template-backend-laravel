@@ -21,7 +21,8 @@ class UserController extends Controller
     public function index(Request $request)
     {
         try {
-            $users = User::get();
+            $users = User::with(['roles'])
+                ->get();
 
             return ResponseHelper::make($users);
         } catch (ResponseException $exception) {
