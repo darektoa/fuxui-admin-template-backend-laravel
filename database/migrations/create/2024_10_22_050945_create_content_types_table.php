@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('content_types', function (Blueprint $table) {
             $table->id();
-            $table->string('codename', 20)->unique();
             $table->string('name');
-            $table->string('description');
+            $table->string('codename', 20)->unique();
+            $table->string('description')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

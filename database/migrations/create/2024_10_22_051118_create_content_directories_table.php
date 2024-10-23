@@ -12,7 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('content_directories', function (Blueprint $table) {
-            $table->id();
+            $table->ulid('id')->primary();
+            $table->foreignUlid('directory_id')->nullable()->constrained('content_directories')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignUlid('menu_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('name');
+            $table->string('codename', 20)->unique()->nullable();
+            $table->unsignedTinyInteger('depth')->default(0);
+            $table->unsignedInteger('order')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });
