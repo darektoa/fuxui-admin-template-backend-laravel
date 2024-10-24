@@ -15,11 +15,12 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         $this->before();
+        $id = self::$id;
         $roles = Role::oldest()->get();
 
         $users = [
             [
-                'id'            => '01J9MWZ6Q0FRPC6DJ0ZY2TSMGA',
+                'id'            => $id[0],
                 'firstname'     => 'Administrator',
                 'lastname'      => 'Example',
                 'username'      => 'admin',
@@ -27,7 +28,7 @@ class UserSeeder extends Seeder
                 'password'      => '$2y$12$Ck4D2nnpoBsFbfbfDEAEEeEUqrC3U8bO8hlRCT4PQgWH2FdYR710O' //password
             ],
             [
-                'id'            => '01J9MWZE8VDM2CA6JWFH6WP726',
+                'id'            => $id[1],
                 'firstname'     => 'User',
                 'lastname'      => 'Example',
                 'username'      => 'user',
@@ -49,6 +50,18 @@ class UserSeeder extends Seeder
 
 
     /**
+     * List of id for this seeders
+     *
+     * @var array<int, string>
+     */
+    public static $id = [
+        '01JAYBVD7DZ3P5J1GFCEAYMTVX', // 1
+        '01JAYBWS5ER5GCSQ7FT7ZSH4S5', // 2
+        '01JAYBWYAFHGGF2Z50PW9SH73C', // 3
+    ];
+
+
+    /**
      * Running before run() method
      */
     public function before(): void
@@ -66,7 +79,7 @@ class UserSeeder extends Seeder
     {
         $this->call([
             UserRoleSeeder::class,
-            // ProfilePictureSeeder::class,
+            ProfilePictureSeeder::class,
         ]);
     }
 }

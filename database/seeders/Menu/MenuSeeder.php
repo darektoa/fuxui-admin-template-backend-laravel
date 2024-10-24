@@ -132,6 +132,48 @@ class MenuSeeder extends Seeder
                 'depth'             => 1,
                 'order'             => 2,
             ],
+            /**
+             * CONTENT MANAGEMENT MENU
+             */
+            [
+                'id'                => '01JAYDNTYGJ4FVCT4JJHH0VBPG',
+                'menu_id'           => null,
+                'codename'          => 'CONTENTGRP',
+                'icon_uri'          => 'https://example.com/icon.svg',
+                'name'              => 'Content Management',
+                'uri'               => null,
+                'is_external_uri'   => false,
+                'description'       => null,
+                'tooltip'           => null,
+                'depth'             => 0,
+                'order'             => 4,
+            ],
+            [
+                'id'                => '01JAYE1PC12Y439M0H891QGQQP',
+                'menu_id'           => '01JAYDNTYGJ4FVCT4JJHH0VBPG',
+                'codename'          => 'CONTENT',
+                'icon_uri'          => 'https://example.com/icon.svg',
+                'name'              => 'Content',
+                'uri'               => '/contents',
+                'is_external_uri'   => false,
+                'description'       => null,
+                'tooltip'           => null,
+                'depth'             => 1,
+                'order'             => 1,
+            ],
+            [
+                'id'                => '01JAYE29PKC4QC3V7J63K6Q1YJ',
+                'menu_id'           => '01JAYDNTYGJ4FVCT4JJHH0VBPG',
+                'codename'          => 'CONTENTTYPE',
+                'icon_uri'          => 'https://example.com/icon.svg',
+                'name'              => 'Content Type',
+                'uri'               => '/contents/types',
+                'is_external_uri'   => false,
+                'description'       => null,
+                'tooltip'           => null,
+                'depth'             => 1,
+                'order'             => 2,
+            ],
         ];
 
         $this->creates($menus);

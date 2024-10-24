@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use Database\Seeders\Content\ContentSeeder;
 use Database\Seeders\Menu\Permission\UserRolePivotSeeder as MenuPermissionUserRolePivotSeeder;
 use Database\Seeders\Menu\MenuSeeder;
 use Database\Seeders\Oauth\ClientSeeder as OauthClientSeeder;
@@ -22,6 +23,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             OauthClientSeeder::class,
             MenuPermissionUserRolePivotSeeder::class,
+            ContentSeeder::class,
         ]);
     }
 }

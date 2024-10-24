@@ -2,7 +2,7 @@
 
 namespace Database\Seeders\Content;
 
-use App\Models\Content\{Page, Directory};
+use App\Models\Content\Directory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
@@ -14,33 +14,33 @@ class DirectorySeeder extends Seeder
      */
     public function run(): void
     {
-        $id = $this->id;
+        $id = self::$id;
 
         $depth0 = [
-            // id,  directory_id,   menu_id,    name,           depth
-            [$id[0],    null,       null,       'Global',           0],
-            [$id[1],    null,       null,       'Auth',             0],
-            [$id[2],    null,       null,       'Home',             0],
-            [$id[3],    null,       null,       'Menus',            0],
-            [$id[4],    null,       null,       'Users',            0],
-            [$id[5],    null,       null,       'Contents',         0],
+            // id,  directory_id,   menu_id,    name,               codename,               depth,  order
+            [$id[0],    null,       null,       'Global',           'global',               0,      1],
+            [$id[1],    null,       null,       'Auth',             'auth',                 0,      2],
+            [$id[2],    null,       null,       'Home',             'home',                 0,      3],
+            [$id[3],    null,       null,       'Menus',            'menus',                0,      4],
+            [$id[4],    null,       null,       'Users',            'users',                0,      5],
+            [$id[5],    null,       null,       'Contents',         'contents',             0,      6],
         ];
 
         $depth1 = [
-            // id,  directory_id,   menu_id,    name,           depth
-            [$id[6],    $id[0],     null,       'App',              1],
-            [$id[7],    $id[0],     null,       'Header',           1],
-            [$id[8],    $id[0],     null,       'Footer',           1],
-            [$id[9],    $id[1],     null,       'Sign In',          1],
-            [$id[10],   $id[1],     null,       'Sign Up',          1],
-            [$id[11],   $id[1],     null,       'Sign Out',         1],
-            [$id[12],   $id[3],     null,       'Permissions',      1],
-            [$id[13],   $id[4],     null,       'Roles',            1],
+            // id,  directory_id,   menu_id,    name,               codename,               depth,  order
+            [$id[6],    $id[0],     null,       'App',              'globalApp',            1,      1],
+            [$id[7],    $id[0],     null,       'Header',           'globalHeader',         1,      2],
+            [$id[8],    $id[0],     null,       'Footer',           'globalFooter',         1,      3],
+            [$id[9],    $id[1],     null,       'Sign In',          'authSignIn',           1,      1],
+            [$id[10],   $id[1],     null,       'Sign Up',          'authSignUp',           1,      2],
+            [$id[11],   $id[1],     null,       'Sign Out',         'authSignOut',          1,      3],
+            [$id[12],   $id[3],     null,       'Permissions',      'menusPermissions',     1,      1],
+            [$id[13],   $id[4],     null,       'Roles',            'usersRoles',           1,      1],
         ];
 
         $depth2 = [
-            // id,  directory_id,   menu_id,    name,           depth
-            [$id[14],   $id[12],    null,       'Types',            2],
+            // id,  directory_id,   menu_id,    name,               codename,               depth,  order
+            [$id[14],   $id[12],    null,       'Types',            'menusPermissionsType', 2,      1],
         ];
 
 
@@ -55,7 +55,7 @@ class DirectorySeeder extends Seeder
      *
      * @var array<int, string>
      */
-    public $id = [
+    public static $id = [
         '01JAW6H8R3SAEG4ZBJPR024CV4', // 0
         '01JAW6HKGYJ0QF7BZHCPW4XZMC', // 1
         '01JAW6HZ8D63Q94MRBXAMMYKX1', // 2
@@ -82,18 +82,18 @@ class DirectorySeeder extends Seeder
     public function transform($data)
     {
         $result     = collect([]);
-        $increment  = 0;
 
-        foreach ($data as $item) {
+        foreach ($data as $index => $item) {
             $result->push([
-                'id'            => $item[0] ?? Str::uuid(),
+                'id'            => $item[0] ?? Str::ulid(),
                 'directory_id'  => $item[1] ?? null,
-                'name'          => $item[2],
-                'codename'      => Str::upper(Str::snake($item[2])),
-                'order'         => $increment + 1,
-                'depth'         => $item[3] ?? 0,
-                'created_at'    => now()->addSeconds($increment),
-                'updated_at'    => now()->addSeconds($increment++),
+                'menu_id'       => $item[2] ?? null,
+                'name'          => $item[3],
+                'codename'      => $item[4],
+                'depth'         => $item[5] ?? 0,
+                'order'         => $item[6],
+                'created_at'    => now()->addSeconds($index),
+                'updated_at'    => now()->addSeconds($index++),
             ]);
         }
 

@@ -2,6 +2,7 @@
 
 namespace App\Models\Content;
 
+use App\Traits\Model\CamelCaseAttributes;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,7 +14,7 @@ use Illuminate\Support\Collection;
 
 class Directory extends Model
 {
-    use HasFactory, HasUlids, SoftDeletes;
+    use CamelCaseAttributes, HasFactory, HasUlids, SoftDeletes;
 
     protected $table = 'content_directories';
 
@@ -23,7 +24,7 @@ class Directory extends Model
 
     protected $with = [
         'contents',
-        'directory',
+        'directories',
     ];
 
 
@@ -43,7 +44,8 @@ class Directory extends Model
      */
     public function contents() :HasMany
     {
-        return $this->hasMany(Content::class, 'directory_id');
+        return $this->hasMany(Content::class, 'directory_id')
+            ->orderBy('order');
     }
 
 
@@ -54,7 +56,8 @@ class Directory extends Model
      */
     public function directories() :HasMany
     {
-        return $this->hasMany(Directory::class, 'directory_id');
+        return $this->hasMany(Directory::class, 'directory_id')
+            ->orderBy('order');
     }
 
 

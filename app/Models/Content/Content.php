@@ -2,6 +2,7 @@
 
 namespace App\Models\Content;
 
+use App\Traits\Model\CamelCaseAttributes;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,11 +13,23 @@ use Illuminate\Support\Collection;
 
 class Content extends Model
 {
-    use HasFactory, HasUlids, SoftDeletes;
+    use CamelCaseAttributes, HasFactory, HasUlids, SoftDeletes;
 
     protected $guarded = [
         'id'
     ];
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'json' => 'object',
+        ];
+    }
 
 
     protected static function booted()
@@ -35,7 +48,8 @@ class Content extends Model
      */
     public function directory() :BelongsTo
     {
-        return $this->belongsTo(Directory::class, 'directory_id');
+        return $this->belongsTo(Directory::class, 'directory_id')
+            ->orderBy('order');
     }
 
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\V1\Menu;
+namespace App\Http\Requests\V1\Content\Directory;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -22,18 +22,12 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'directoryId'       => 'nullable|exists:content_directories,id',
             'menuId'            => 'nullable|exists:menus,id',
-            'codename'          => 'required|max:32|unique:menus',
-            'name'              => 'required|max:32',
-            'iconUri'           => 'nullable|max:255',
-            'uri'               => 'required|max:255',
-            'isExternalUri'     => 'nullable|integer',
-            'description'       => 'nullable|max:512',
-            'tooltip'           => 'nullable|max:100',
+            'name'              => 'required|max:255',
+            'codename'          => 'nullable|max:32|unique:content_directories',
             'depth'             => 'nullable|integer|max:255',
-            'order'             => 'nullable|integer|max:255',
+            'order'             => 'nullable|integer',
         ];
     }
 }
-
-

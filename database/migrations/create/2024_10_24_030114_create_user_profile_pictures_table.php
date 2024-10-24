@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('content_types', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('codename', 32)->unique();
-            $table->string('description')->nullable();
+        Schema::create('user_profile_pictures', function (Blueprint $table) {
+            $table->ulid('id')->primary();
+            $table->foreignUlid('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('uri');
+            $table->string('alt')->nullable();
+            $table->tinyInteger('is_active')->default(1);
             $table->timestamps();
             $table->softDeletes();
         });
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('content_types');
+        Schema::dropIfExists('user_profile_pictures');
     }
 };

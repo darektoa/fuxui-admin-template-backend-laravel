@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\V1\Menu;
+namespace App\Http\Requests\V1\Content\Directory;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -21,18 +21,15 @@ class UpdateRequest extends FormRequest
      */
     public function rules(): array
     {
-        $menuId = $this->route('menu');
+        $directoryId = $this->route('directory');
 
         return [
-            'codename'          => "nullable|max:32|unique:menus,codename,$menuId,id",
-            'name'              => 'nullable|max:32',
-            'iconUri'           => 'nullable|max:255',
-            'uri'               => 'nullable|max:255',
-            'isExternalUri'     => 'nullable|integer',
-            'description'       => 'nullable|max:512',
-            'tooltip'           => 'nullable|max:100',
+            'directoryId'       => 'nullable|exists:content_directories,id',
+            'menuId'            => 'nullable|exists:menus,id',
+            'name'              => 'nullable|max:255',
+            'codename'          => "nullable|max:32|unique:content_directories,codename,$directoryId,id",
             'depth'             => 'nullable|integer|max:255',
-            'order'             => 'nullable|integer|max:255',
+            'order'             => 'nullable|integer',
         ];
     }
 }

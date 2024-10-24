@@ -1,2 +1,4 @@
 *
+!seeders
+!seeders/**/*
 !.gitignore

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignUlid('directory_id')->nullable()->constrained('content_directories')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignUlid('menu_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('name');
-            $table->string('codename', 20)->unique()->nullable();
+            $table->string('codename', 32)->unique()->nullable();
             $table->unsignedTinyInteger('depth')->default(0);
             $table->unsignedInteger('order')->default(0);
             $table->timestamps();

@@ -8,6 +8,7 @@ use App\Traits\Model\CamelCaseAttributes;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -66,6 +67,20 @@ class User extends Authenticatable
             )
             ->using(RolePivot::class)
             ->withTimestamps();
+    }
+
+
+    /**
+     * Get profile pictures of the user
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function profilePictures() :HasMany
+    {
+        return $this->hasMany(
+                related: Role::class,
+                foreignKey: 'user_id',
+            );
     }
 
 
