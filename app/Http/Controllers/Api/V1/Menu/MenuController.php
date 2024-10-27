@@ -40,7 +40,7 @@ class MenuController extends Controller
                 'codename'          => Str::upper($request->codename),
                 'name'              => $request->name,
                 'icon_uri'          => $request->iconUri,
-                'uri'               => Str::trim($request->uri),
+                'uri'               => $request->uri ? Str::trim($request->uri) : null,
                 'is_external_uri'   => $request->isExternalUri ?? 0,
                 'description'       => $request->description,
                 'tooltip'           => $request->tooltip,

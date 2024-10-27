@@ -26,7 +26,7 @@ class StoreRequest extends FormRequest
             'codename'          => 'required|max:32|unique:menus',
             'name'              => 'required|max:32',
             'iconUri'           => 'nullable|max:255',
-            'uri'               => 'required|max:255',
+            'uri'               => 'nullable|max:255',
             'isExternalUri'     => 'nullable|integer',
             'description'       => 'nullable|max:512',
             'tooltip'           => 'nullable|max:100',

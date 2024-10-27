@@ -21,7 +21,9 @@ class ContentController extends Controller
     {
         try {
             $cotents = Directory::where('depth', 0)
-                ->get();
+                ->get()
+                ->flatten();
+
 
             return ResponseHelper::make($cotents);
         } catch (ResponseException $exception) {
