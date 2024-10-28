@@ -69,8 +69,32 @@ class ContentSeeder extends Seeder
             ],
         ];
 
+        $authSignInContents = [
+            [
+                'type_id'   => $typeIds[0],
+                'name'      => 'Heading 1',
+                'codename'  => 'authSignInHeading1',
+                'value'     => 'Sign-In',
+                'order'     => 1,
+            ],
+            [
+                'type_id'   => $typeIds[0],
+                'name'      => 'Button Login Text',
+                'codename'  => 'authSignInBtnLoginText',
+                'value'     => 'Login',
+                'order'     => 2,
+            ],
+        ];
+
         foreach($appContents as $content) {
             Directory::where('codename', 'globalApp')
+                ->first()
+                ->contents()
+                ->create($content);
+        }
+
+        foreach($authSignInContents as $content) {
+            Directory::where('codename', 'authSignIn')
                 ->first()
                 ->contents()
                 ->create($content);

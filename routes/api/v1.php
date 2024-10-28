@@ -27,11 +27,12 @@ Route::middleware(['auth:api'])->group(function() {
         Route::apiResource('roles.menuPermissions', User\RoleController::class)->except(['show', 'update']);
     });
 
-    Route::apiResource('contents', Content\ContentController::class);
+    Route::apiResource('contents', Content\ContentController::class)->except('index');
     Route::apiResource('menus', Menu\MenuController::class);
     Route::apiSingleton('profile', Profile\ProfileController::class);
     Route::apiResource('users', User\UserController::class);
     Route::apiSingleton('setting', Setting\SettingController::class)->only('update');
 });
 
+Route::apiResource('contents', Content\ContentController::class)->only('index');
 Route::apiSingleton('setting', Setting\SettingController::class)->only('show');

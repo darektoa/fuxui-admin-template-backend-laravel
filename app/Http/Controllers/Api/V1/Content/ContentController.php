@@ -9,6 +9,7 @@ use App\Helpers\StorageHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\V1\Content\StoreRequest;
 use App\Http\Requests\V1\Content\UpdateRequest;
+use App\Http\Resources\Content\ContentResource;
 use App\Models\Content\{Content, Directory};
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -21,11 +22,15 @@ class ContentController extends Controller
     public function index(Request $request)
     {
         try {
-            $cotents = Directory::where('depth', 0)
-                ->orderBy('order')
-                ->get();
+            $keyBy = $request->keyBy;
+            $cotents = Content::get()
+                ->when(in_array($keyBy, ['id', 'codename']), fn($data) => (
+                    $data->keyBy($keyBy)
+                ));
 
-            return ResponseHelper::make($cotents);
+            return ResponseHelper::make(
+                ContentResource::collection($cotents)
+            );
         } catch (ResponseException $exception) {
             return ResponseHelper::error($exception);
         }
@@ -56,7 +61,9 @@ class ContentController extends Controller
 
             $content = Content::create($data);
 
-            return ResponseHelper::created($content);
+            return ResponseHelper::created(
+                ContentResource::make($content)
+            );
         } catch (ResponseException $exception) {
             return ResponseHelper::error($exception);
         }
@@ -70,7 +77,9 @@ class ContentController extends Controller
         try {
             $content = Content::find($id);
 
-            return ResponseHelper::make($content);
+            return ResponseHelper::make(
+                ContentResource::make($content)
+            );
         } catch (ResponseException $exception) {
             return ResponseHelper::error($exception);
         }
