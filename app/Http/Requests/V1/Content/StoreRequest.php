@@ -27,7 +27,7 @@ class StoreRequest extends FormRequest
             'usingContentId'    => 'nullable|exists:contents,id',
             'name'              => 'required|max:255',
             'codename'          => 'nullable|max:32|unique:contents',
-            'value'             => 'nullable|max:255',
+            'value'             => 'nullable',
             'json'              => 'nullable|json',
             'order'             => 'nullable|integer',
         ];

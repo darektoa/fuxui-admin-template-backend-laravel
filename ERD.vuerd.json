@@ -4,8 +4,13 @@
   "settings": {
     "width": 8000,
     "height": 8000,
+<<<<<<< Updated upstream
     "scrollTop": -2851.113,
     "scrollLeft": -2882.4652,
+=======
+    "scrollTop": -2833.113,
+    "scrollLeft": -2872.4652,
+>>>>>>> Stashed changes
     "zoomLevel": 0.71,
     "show": 431,
     "database": 4,

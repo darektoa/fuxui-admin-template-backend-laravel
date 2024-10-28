@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1\Content;
 use App\Exceptions\ResponseException;
 use App\Helpers\CollectionHelper;
 use App\Helpers\ResponseHelper;
+use App\Helpers\StorageHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\V1\Content\StoreRequest;
 use App\Http\Requests\V1\Content\UpdateRequest;
@@ -21,9 +22,8 @@ class ContentController extends Controller
     {
         try {
             $cotents = Directory::where('depth', 0)
-                ->get()
-                ->flatten();
-
+                ->orderBy('order')
+                ->get();
 
             return ResponseHelper::make($cotents);
         } catch (ResponseException $exception) {
@@ -37,7 +37,8 @@ class ContentController extends Controller
     public function store(StoreRequest $request)
     {
         try {
-            $content = Content::create([
+            $valueFile = $request->file('value');
+            $data = collect([
                 'directoryId'       => $request->directoryId,
                 'typeId'            => $request->typeId,
                 'usingContentId'    => $request->usingContentId,
@@ -47,6 +48,13 @@ class ContentController extends Controller
                 'json'              => json_encode($request->json),
                 'order'             => $request->order ?? 0,
             ]);
+
+            if($valueFile && $valueFile->isReadable()) {
+                $fileURI = StorageHelper::putPublic('contents/files', $valueFile);
+                $data->put('value', $fileURI);
+            }
+
+            $content = Content::create($data);
 
             return ResponseHelper::created($content);
         } catch (ResponseException $exception) {
@@ -74,6 +82,7 @@ class ContentController extends Controller
     public function update(UpdateRequest $request, string $id)
     {
         try {
+            $valueFile = $request->file('value');
             $content = Content::find($id);
 
             if(! $content)
@@ -93,6 +102,11 @@ class ContentController extends Controller
                 'json',
                 'order',
             ]);
+
+            if($valueFile && $valueFile->isReadable()) {
+                $fileURI = StorageHelper::putPublic('contents/files', $valueFile);
+                $data->put('value', $fileURI);
+            }
 
             $content->update($data->toArray());
 

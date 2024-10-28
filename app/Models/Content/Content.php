@@ -19,6 +19,10 @@ class Content extends Model
         'id'
     ];
 
+    protected $with = [
+        'type'
+    ];
+
     /**
      * Get the attributes that should be cast.
      *

@@ -29,7 +29,7 @@ class UpdateRequest extends FormRequest
             'usingContentId'    => 'nullable|exists:contents,id',
             'name'              => 'nullable|max:255',
             'codename'          => "nullable|max:32|unique:contents,codename,$contentId,id",
-            'value'             => 'nullable|max:255',
+            'value'             => 'nullable',
             'json'              => 'nullable|json',
             'order'             => 'nullable|integer',
         ];

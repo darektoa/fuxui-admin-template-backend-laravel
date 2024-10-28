@@ -8,6 +8,7 @@ use App\Helpers\ResponseHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\V1\Content\Directory\StoreRequest;
 use App\Http\Requests\V1\Content\Directory\UpdateRequest;
+use App\Http\Resources\Content\DirectoryResource;
 use App\Models\Content\Directory;
 use Illuminate\Http\Request;
 
@@ -23,7 +24,9 @@ class DirectoryController extends Controller
                 ->orderBy('order')
                 ->get();
 
-            return ResponseHelper::make($directories);
+            return ResponseHelper::make(
+                DirectoryResource::collection($directories)
+            );
         } catch (ResponseException $exception) {
             return ResponseHelper::error($exception);
         }

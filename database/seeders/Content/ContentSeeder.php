@@ -64,7 +64,7 @@ class ContentSeeder extends Seeder
                 'type_id'   => $typeIds[0],
                 'name'      => 'Web Title',
                 'codename'  => 'appWebTitle',
-                'value'     => 'seeders/contents/ca08c7da-05b4-4bcd-861f-b2288d61f2b2.svg',
+                'value'     => 'Fuxui Dashboard',
                 'order'     => 7,
             ],
         ];
