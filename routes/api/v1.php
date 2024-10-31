@@ -10,6 +10,10 @@ Route::middleware(['auth:api'])->group(function() {
         Route::apiResource('types', Content\TypeController::class);
     });
 
+    Route::prefix('/logs')->name('logs.')->group(function() {
+        Route::apiResource('activities', Log\ActivityController::class);
+    });
+
     Route::prefix('/menus')->name('menus.')->group(function() {
         Route::prefix('/permissions')->name('permissions.')->group(function() {
             Route::apiResource('types', Menu\Permission\TypeController::class);

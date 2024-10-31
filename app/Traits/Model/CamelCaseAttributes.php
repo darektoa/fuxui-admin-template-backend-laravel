@@ -1,6 +1,6 @@
 <?php
 
-namespace  App\Traits\Model;
+namespace App\Traits\Model;
 
 use App\Helpers\CollectionHelper;
 use Illuminate\Support\Str;
@@ -72,7 +72,7 @@ trait CamelCaseAttributes {
         return parent::getAttribute(Str::snake($key));
     }
 
-    
+
     /**
      * Get all of the current attributes on the model for an insert operation.
      *
