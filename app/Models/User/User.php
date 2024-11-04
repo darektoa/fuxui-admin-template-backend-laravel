@@ -65,6 +65,7 @@ class User extends Authenticatable
                 foreignPivotKey: 'user_id',
                 relatedPivotKey: 'role_id',
             )
+            ->wherePivotNull('deleted_at')
             ->using(RolePivot::class)
             ->withTimestamps();
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1\User;
 use App\Exceptions\ResponseException;
 use App\Helpers\CollectionHelper;
 use App\Helpers\ResponseHelper;
+use App\Helpers\UsernameHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\V1\User\StoreRequest;
 use App\Http\Requests\V1\User\UpdateRequest;
@@ -36,9 +37,10 @@ class UserController extends Controller
     public function store(StoreRequest $request)
     {
         try {
+            $email = $request->email;
             $user = User::create([
-                'email'         => $request->email,
-                'username'      => $request->username,
+                'email'         => $email,
+                'username'      => $request->username ?? UsernameHelper::fromEmail($email),
                 'password'      => Hash::make($request->password),
                 'firstname'     => $request->firstname,
                 'lastname'      => $request->lastname,
@@ -61,7 +63,8 @@ class UserController extends Controller
     public function show(string $id)
     {
         try {
-            $user = User::find($id);
+            $user = User::with(['roles'])
+                ->find($id);
 
             return ResponseHelper::make($user);
         } catch (ResponseException $exception) {

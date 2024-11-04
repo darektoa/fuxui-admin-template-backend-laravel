@@ -174,6 +174,35 @@ class MenuSeeder extends Seeder
                 'depth'             => 1,
                 'order'             => 2,
             ],
+            /**
+             * ACTIVITY LOG MENU
+             */
+            [
+                'id'                => '01JBVAFSDV4PC0H286P9KKBH2E',
+                'menu_id'           => null,
+                'codename'          => 'LOGGRP',
+                'icon_uri'          => 'https://example.com/icon.svg',
+                'name'              => 'Logs',
+                'uri'               => null,
+                'is_external_uri'   => false,
+                'description'       => null,
+                'tooltip'           => null,
+                'depth'             => 0,
+                'order'             => 5,
+            ],
+            [
+                'id'                => '01JBVASX17ZHC4FS8GDXPW0GJH',
+                'menu_id'           => '01JBVAFSDV4PC0H286P9KKBH2E',
+                'codename'          => 'ACTIVITYLOG',
+                'icon_uri'          => 'https://example.com/icon.svg',
+                'name'              => 'Activities',
+                'uri'               => '/logs/activities',
+                'is_external_uri'   => false,
+                'description'       => null,
+                'tooltip'           => null,
+                'depth'             => 1,
+                'order'             => 1,
+            ],
         ];
 
         $this->creates($menus);
