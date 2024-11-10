@@ -22,7 +22,13 @@ class UserController extends Controller
     public function index(Request $request)
     {
         try {
+            $search = $request->search;
             $users = User::with(['roles'])
+                ->when((bool) $search, fn($query) => (
+                    $query->where('firstname', 'like', "%$search%")
+                        ->orWhere('lastname', 'like', "%$search%")
+                        ->orWhere('email', 'like', "%$search%")
+                ))
                 ->get();
 
             return ResponseHelper::make($users);
