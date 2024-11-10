@@ -19,6 +19,7 @@ class ActivityController extends Controller
         try {
             $startDate = $request->startDate;
             $endDate = $request->endDate;
+            $search = $request->search;
             $logs = ActivityLog::with([
                     'accessToken',
                     'client',
@@ -33,6 +34,14 @@ class ActivityController extends Controller
                 ))
                 ->when((bool) $endDate, fn($query) => (
                     $query->whereDate('created_at', '<=', $endDate)
+                ))
+                ->when((bool) $search, fn($query) => (
+                    $query->where('url', 'LIKE', "%$search%")
+                        ->orWhere('name', 'LIKE', "%$search%")
+                        ->orWhereRelation('user', 'email', 'LIKE', "%$search%")
+                        ->orWhereRelation('user', 'username', 'LIKE', "%$search%")
+                        ->orWhereRelation('user', 'firstname', 'LIKE', "%$search%")
+                        ->orWhereRelation('user', 'lastname', 'LIKE', "%$search%")
                 ))
                 ->get();
 
