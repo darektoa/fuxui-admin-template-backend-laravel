@@ -86,6 +86,16 @@ class ContentSeeder extends Seeder
             ],
         ];
 
+        $footerContents = [
+            [
+                'type_id'   => $typeIds[0],
+                'name'      => 'Copyright',
+                'codename'  => 'footerCopyright',
+                'value'     => 'Sign-In',
+                'order'     => 1,
+            ],
+        ];
+
         foreach($appContents as $content) {
             Directory::where('codename', 'globalApp')
                 ->first()
@@ -95,6 +105,13 @@ class ContentSeeder extends Seeder
 
         foreach($authSignInContents as $content) {
             Directory::where('codename', 'authSignIn')
+                ->first()
+                ->contents()
+                ->create($content);
+        }
+
+        foreach($footerContents as $content) {
+            Directory::where('codename', 'globalFooter')
                 ->first()
                 ->contents()
                 ->create($content);

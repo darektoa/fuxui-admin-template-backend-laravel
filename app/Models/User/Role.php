@@ -60,6 +60,7 @@ class Role extends Model
                 foreignPivotKey: 'user_role_id',
                 relatedPivotKey: 'menu_permission_id',
             )
+            ->wherePivotNull('deleted_at')
             ->using(UserRolePivot::class)
             ->withTimestamps();
     }

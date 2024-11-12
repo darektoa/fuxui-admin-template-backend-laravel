@@ -18,7 +18,7 @@ class ProfileController extends Controller
     public function show(Request $request)
     {
         try {
-            $user = User::with('roles')->find(Auth::id());
+            $user = User::with('roles.permissions')->find(Auth::id());
 
             return ResponseHelper::make($user);
         } catch (ResponseException $exception) {

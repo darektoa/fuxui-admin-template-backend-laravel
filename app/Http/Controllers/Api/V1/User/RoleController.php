@@ -80,7 +80,8 @@ class RoleController extends Controller
             ]));
 
             if($menuPermissions)
-                $role->permissions()->syncWithoutDetaching($menuPermissions);
+                $result = $role->permissions()->sync($menuPermissions);
+
 
             $role->update($data->toArray());
 

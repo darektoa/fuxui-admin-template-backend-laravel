@@ -3,6 +3,7 @@
 namespace App\Models\Menu\Permission;
 
 use App\Models\Menu\Menu;
+use App\Models\User\Role;
 use App\Models\User\User;
 use App\Traits\Model\CamelCaseAttributes;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
@@ -66,14 +67,14 @@ class Permission extends Model
 
 
     /**
-     * Get users of the menu permission
+     * Get roles of the menu permission
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function users(): BelongsToMany
+    public function roles(): BelongsToMany
     {
         return $this->belongsToMany(
-                related: User::class,
+                related: Role::class,
                 table: 'menu_permission_user_role_pivot',
                 foreignPivotKey: 'menu_permission_id',
                 relatedPivotKey: 'user_role_id',

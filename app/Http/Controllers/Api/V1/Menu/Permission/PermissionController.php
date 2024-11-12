@@ -8,6 +8,7 @@ use App\Helpers\ResponseHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\V1\Menu\Permission\StoreRequest;
 use App\Http\Requests\V1\Menu\Permission\UpdateRequest;
+use App\Models\Menu\Menu;
 use App\Models\Menu\Permission\Permission;
 use Illuminate\Http\Request;
 
@@ -19,7 +20,15 @@ class PermissionController extends Controller
     public function index(Request $request)
     {
         try {
-            $permissions = Permission::get();
+            $permissions = Permission::with([
+                    'menu' => fn($query) => $query->orderBy('name'),
+                    'types'
+                ])
+                ->get();
+
+            // $permissions = Menu::with(['menus.permissions.types', 'permissions.types'])
+            //     ->where('depth', 0)
+            //     ->get();
 
             return ResponseHelper::make($permissions);
         } catch (ResponseException $exception) {
