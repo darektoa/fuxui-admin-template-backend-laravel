@@ -58,7 +58,7 @@ class TypeSeeder extends Seeder
             $result->push([
                 'id'            => $item[0] ?? Str::ulid(),
                 'name'          => $item[1],
-                'codename'      => Str::camel($item[1]),
+                'codename'      => Str::camel(Str::lower($item[1])),
                 'description'   => $item[2],
                 'created_at'    => now()->addSeconds($index),
                 'updated_at'    => now()->addSeconds($index),
