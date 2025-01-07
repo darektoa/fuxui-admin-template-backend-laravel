@@ -91,7 +91,7 @@ class ContentSeeder extends Seeder
                 'type_id'   => $typeIds[0],
                 'name'      => 'Copyright',
                 'codename'  => 'footerCopyright',
-                'value'     => 'Sign-In',
+                'value'     => 'Copyright©2024. All rights reserved',
                 'order'     => 1,
             ],
         ];

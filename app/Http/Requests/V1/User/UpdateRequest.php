@@ -25,7 +25,8 @@ class UpdateRequest extends FormRequest
         $userId = $this->route('user');
 
         return [
-            'roleId'        => 'nullable|max:26|exists:user_roles,id',
+            'roleId'        => 'nullable|array',
+            'roleId.*'      => 'nullable|max:26|exists:user_roles,id',
             'email'         => "nullable|max:255|email|unique:users,email,$userId,id",
             'username'      => "nullable|max:20|unique:users,username,$userId,id",
             'firstname'     => 'nullable|max:32',

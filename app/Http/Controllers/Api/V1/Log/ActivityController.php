@@ -8,15 +8,20 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Log\ActivityResource;
 use App\Models\Log\ActivityLog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ActivityController extends Controller
 {
+    public $pageName = "Log Activity";
+
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
         try {
+            $page = $request->page ?? 1;
+            $perPage = $request->perPage ?? 10;
             $startDate = $request->startDate;
             $endDate = $request->endDate;
             $search = $request->search;
@@ -43,9 +48,14 @@ class ActivityController extends Controller
                         ->orWhereRelation('user', 'firstname', 'LIKE', "%$search%")
                         ->orWhereRelation('user', 'lastname', 'LIKE', "%$search%")
                 ))
-                ->get();
+                ->where('user_id', Auth::id())
+                ->latest()
+                ->paginate(
+                    page: $page,
+                    perPage: $perPage
+                );
 
-            return ResponseHelper::make(
+            return ResponseHelper::paginate(
                 ActivityResource::collection($logs)
             );
         } catch (ResponseException $exception) {

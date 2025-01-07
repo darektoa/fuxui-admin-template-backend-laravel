@@ -61,6 +61,7 @@ class Permission extends Model
                 foreignPivotKey: 'menu_permission_id',
                 relatedPivotKey: 'menu_permission_type_id',
             )
+            ->wherePivotNull('deleted_at')
             ->using(MenuPermissionTypePivot::class)
             ->withTimestamps();
     }

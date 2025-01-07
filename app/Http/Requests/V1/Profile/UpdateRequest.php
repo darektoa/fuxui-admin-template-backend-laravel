@@ -24,13 +24,15 @@ class UpdateRequest extends FormRequest
         $userId = auth('api')->id();
 
         return [
-            'email'         => "nullable|max:255|unique:users,ermail,$userId,id",
-            'username'      => "nullable|max:20|unique:users,username,$userId,id",
-            'firstname'     => 'nullable|max:32',
-            'lastname'      => 'nullable|max:32',
-            'birthDate'     => 'nullable|date|max_date:test',
-            'birthPlace'    => 'nullable|max:100',
-            'phoneNumber'   => 'nullable|max:255',
+            'email'             => "nullable|max:255|unique:users,email,$userId,id",
+            'username'          => "nullable|max:20|unique:users,username,$userId,id",
+            'firstname'         => 'nullable|max:32',
+            'lastname'          => 'nullable|max:32',
+            'birthDate'         => 'nullable|date',
+            'birthPlace'        => 'nullable|max:100',
+            'phoneNumber'       => 'nullable|max:255',
+            'profilePictures'   => 'nullable|array',
+            'profilePictures.*' => 'file',
         ];
     }
 }

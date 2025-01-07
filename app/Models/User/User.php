@@ -4,7 +4,8 @@ namespace App\Models\User;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-use App\Traits\Model\CamelCaseAttributes;
+use App\Models\Menu;
+use App\Traits\Model\{CamelCaseAttributes, ChartTrait};
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -16,7 +17,7 @@ use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use CamelCaseAttributes, HasApiTokens, HasFactory, HasUlids, Notifiable, SoftDeletes;
+    use CamelCaseAttributes, ChartTrait, HasApiTokens, HasFactory, HasUlids, Notifiable, SoftDeletes;
 
     /**
      * The attributes that are guarded from mass assignable.
@@ -71,6 +72,15 @@ class User extends Authenticatable
     }
 
 
+    public function permissions()
+    {
+        return $this->hasManyThrough(
+            related: Menu\Permission\Permission::class,
+            through: Role::class,
+        );
+    }
+
+
     /**
      * Get profile pictures of the user
      *
@@ -79,7 +89,7 @@ class User extends Authenticatable
     public function profilePictures() :HasMany
     {
         return $this->hasMany(
-                related: Role::class,
+                related: ProfilePicture::class,
                 foreignKey: 'user_id',
             );
     }

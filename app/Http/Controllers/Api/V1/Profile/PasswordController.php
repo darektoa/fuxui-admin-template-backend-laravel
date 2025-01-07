@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 
 class PasswordController extends Controller
 {
+    public $pageName = "Profile Password";
 
     /**
      * Update the specified resource in storage.

@@ -2,6 +2,7 @@
 
 namespace App\Models\Menu;
 
+use App\Models\User\Role;
 use App\Traits\Model\CamelCaseAttributes;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -10,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 
 class Menu extends Model
 {
@@ -87,5 +89,24 @@ class Menu extends Model
             foreignKey: 'menu_id',
             localKey: 'id',
         );
+    }
+
+
+    /**
+     * Get menu only have in the current account by roles
+     *
+     */
+    public function scopeOnlyOwned($query)
+    {
+        $roleIds = Auth::guard('api')->user()->roles->pluck('id');
+        $permissions = Permission\Permission::whereHas('roles', fn($query) => (
+                $query->whereIn('user_roles.id', $roleIds)
+            ))
+            ->get();
+
+        $showInSidebarPerms = $permissions->where("name", "Show On Sidebar");
+        $showInSidebarPermIds = $showInSidebarPerms->pluck('menu_id');
+
+        return $query->whereIn('menus.id', $showInSidebarPermIds ?? []);
     }
 }

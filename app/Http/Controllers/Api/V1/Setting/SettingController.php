@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 
 class SettingController extends Controller
 {
+    public $pageName = "User Setting";
+
     /**
      * Display the authed profile resource.
      */

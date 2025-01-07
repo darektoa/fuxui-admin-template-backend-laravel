@@ -14,6 +14,8 @@ use Illuminate\Http\Request;
 
 class DirectoryController extends Controller
 {
+    public $pageName = "Content Directory";
+
     /**
      * Display a listing of the resource.
      */

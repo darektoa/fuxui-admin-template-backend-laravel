@@ -14,6 +14,8 @@ use Illuminate\Http\Request;
 
 class PermissionController extends Controller
 {
+    public $pageName = "Menu Permission";
+
     /**
      * Display a listing of the resource.
      */
@@ -59,7 +61,8 @@ class PermissionController extends Controller
     public function show(string $id)
     {
         try {
-            $permission = Permission::find($id);
+            $permission = Permission::with(['menu', 'types'])
+                ->find($id);
 
             return ResponseHelper::make($permission);
         } catch (ResponseException $exception) {
@@ -78,9 +81,13 @@ class PermissionController extends Controller
             if(! $permission)
                 throw new ResponseException('Menu Permission not found', 404);
 
-            $data = CollectionHelper::getOrOld($request->all(), $permission);
+            $data = CollectionHelper::getOrOld($request->all(), $permission, [
+                'menuId',
+                'name',
+            ]);
 
             $permission->update($data->toArray());
+            $permission->types()->sync($request->permissionTypeId);
 
             return ResponseHelper::make($permission);
         } catch (ResponseException $exception) {

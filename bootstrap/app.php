@@ -25,6 +25,10 @@ return Application::configure(basePath: dirname(__DIR__))
             // 'log'       => App\Http\Middleware\ActivityLog::class,
         ]);
 
+        $middleware->prepend([
+            Illuminate\Http\Middleware\HandleCors::class,
+        ]);
+
         $middleware->prependToGroup('api', [
             App\Http\Middleware\ActivityLog::class,
 

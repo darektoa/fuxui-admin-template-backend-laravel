@@ -13,14 +13,21 @@ use Illuminate\Support\Str;
 
 class MenuController extends Controller
 {
+    public $pageName = "Menu";
+
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
         try {
-            $menus = Menu::with('menus.menus')
+            $menus = Menu::with([
+                    'menus' => fn($q) => $q->orderBy('order')->onlyOwned(),
+                    'menus.menus' => fn($q) => $q->orderBy('order')->onlyOwned(),
+                ])
                 ->where('depth', 0)
+                ->orderBy('order')
+                ->onlyOwned()
                 ->get();
 
             return ResponseHelper::make($menus);

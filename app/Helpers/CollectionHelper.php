@@ -10,7 +10,7 @@ class CollectionHelper{
         $items,
         int $perPage=15,
         string $pageName='page',
-        int $page=null
+        ?int $page=null
     ) {
         $page       = $page ?: Paginator::resolveCurrentPage();
         $options    = [

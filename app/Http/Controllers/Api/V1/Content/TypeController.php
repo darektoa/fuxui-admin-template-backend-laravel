@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 
 class TypeController extends Controller
 {
+    public $pageName = "Content Type";
+
     /**
      * Display a listing of the resource.
      */

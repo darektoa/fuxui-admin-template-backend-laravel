@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\V1\Menu\Permission;
 
 use App\Exceptions\ResponseException;
-use App\Helpers\ResponseHelper;
+use App\Helpers\{CollectionHelper, ResponseHelper};
 use App\Http\Controllers\Controller;
 use App\Http\Requests\V1\Menu\Permission\Type\{StoreRequest, UpdateRequest};
 use App\Models\Menu\Permission\Type;
@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 
 class TypeController extends Controller
 {
+    public $pageName = "Menu Permission Type";
+
     /**
      * Display a listing of the resource.
      */

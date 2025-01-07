@@ -17,21 +17,37 @@ class PermissionSeeder extends Seeder
         $permTypes      = Type::oldest()->get();
         $permissions    = collect([
             [
-                'id'        => '01J9TTRZT8BP8MJ70791137CVX',
+                'id'        => '01JDKB58YPGW9G9EJYVVYCA2AR',
                 'menu_id'   => '01J9TCCAHGHJ0MRX7TY079H8MC', // HOME
                 'name'      => 'Show On Sidebar',
                 'types'     => ['R'],
             ],
             [
-                'id'        => '01J9TTS6VXS5K2AX9M7ST51NG6',
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP66Z',
                 'menu_id'   => '01J9TCCAHGHJ0MRX7TY079H8MC', // HOME
                 'name'      => 'Dashboard Section',
                 'types'     => ['R'],
             ],
             [
-                'id'        => '01J9TVPYXXABPA2T9C3ZGRTR7V',
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP670',
                 'menu_id'   => '01J9TCCAHGHJ0MRX7TY079H8MC', // HOME
                 'name'      => 'Summary Statistic Section',
+                'types'     => ['R'],
+            ],
+            [
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP671',
+                'menu_id'   => '01J9TCCAHGHJ0MRX7TY079H8MC', // HOME
+                'name'      => 'Summary Statistic Chart Section',
+                'types'     => ['R'],
+            ],
+
+            /**
+             * MENU GROUP MANAGEMENT
+             */
+            [
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP672',
+                'menu_id'   => '01J9TCPRVGJ80BN253HTNR49Z8',
+                'name'      => 'Show On Sidebar',
                 'types'     => ['R'],
             ],
 
@@ -39,50 +55,50 @@ class PermissionSeeder extends Seeder
              * MENU MANAGEMENT
              */
             [
-                'id'        => '01J9WXPK0Q1WDZRQA7NYB9K6P1',
-                'menu_id'   => '01J9TCPRVGJ80BN253HTNR49Z8',
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP673',
+                'menu_id'   => '01J9TCQ6G50TR26C8P5M7MRHM2',
                 'name'      => 'Show On Sidebar',
                 'types'     => ['R'],
             ],
             [
-                'id'        => '01J9TWVB8YBTS8QGZJS1R70EZ8',
-                'menu_id'   => '01J9TCPRVGJ80BN253HTNR49Z8',
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP674',
+                'menu_id'   => '01J9TCQ6G50TR26C8P5M7MRHM2',
                 'name'      => 'List Table',
                 'types'     => ['R'],
             ],
             [
-                'id'        => '01J9TWVNNM3F3BDSQEYP4XZHCZ',
-                'menu_id'   => '01J9TCPRVGJ80BN253HTNR49Z8',
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP675',
+                'menu_id'   => '01J9TCQ6G50TR26C8P5M7MRHM2',
                 'name'      => 'Create',
                 'types'     => ['R', 'W', 'X'],
             ],
             [
-                'id'        => '01J9TWVW8QT0666NWY0PY107AB',
-                'menu_id'   => '01J9TCPRVGJ80BN253HTNR49Z8',
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP676',
+                'menu_id'   => '01J9TCQ6G50TR26C8P5M7MRHM2',
                 'name'      => 'Detail',
                 'types'     => ['R', 'X'],
             ],
             [
-                'id'        => '01J9TWW1Z5T4YDNJYNA5548HNN',
-                'menu_id'   => '01J9TCPRVGJ80BN253HTNR49Z8',
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP677',
+                'menu_id'   => '01J9TCQ6G50TR26C8P5M7MRHM2',
                 'name'      => 'Edit',
                 'types'     => ['R', 'W', 'X'],
             ],
             [
-                'id'        => '01J9TWW7MNEHX60XHRV54K2SVQ',
-                'menu_id'   => '01J9TCPRVGJ80BN253HTNR49Z8',
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP678',
+                'menu_id'   => '01J9TCQ6G50TR26C8P5M7MRHM2',
                 'name'      => 'Delete',
                 'types'     => ['R', 'W', 'X'],
             ],
             [
-                'id'        => '01J9TWWCWXSD1F53VWHCBV6AEW',
-                'menu_id'   => '01J9TCPRVGJ80BN253HTNR49Z8',
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP679',
+                'menu_id'   => '01J9TCQ6G50TR26C8P5M7MRHM2',
                 'name'      => 'Export PDF',
                 'types'     => ['R', 'X'],
             ],
             [
-                'id'        => '01J9TWWWASAE23483E02F6PWGD',
-                'menu_id'   => '01J9TCPRVGJ80BN253HTNR49Z8',
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP67A',
+                'menu_id'   => '01J9TCQ6G50TR26C8P5M7MRHM2',
                 'name'      => 'Export Excel',
                 'types'     => ['R', 'X'],
             ],
@@ -91,49 +107,49 @@ class PermissionSeeder extends Seeder
              * MENU PERMISSION TYPE MANAGEMENT
              */
             [
-                'id'        => '01J9WXQF3B8YTKG55HTV8YQJ4R',
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP67B',
                 'menu_id'   => '01J9TD08T7GB79FPD1TGNBF3V2',
                 'name'      => 'Show On Sidebar',
                 'types'     => ['R'],
             ],
             [
-                'id'        => '01J9TWX9P8SAR4PRDR96MQB27A',
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP67C',
                 'menu_id'   => '01J9TD08T7GB79FPD1TGNBF3V2',
                 'name'      => 'List Table',
                 'types'     => ['R'],
             ],
             [
-                'id'        => '01J9TWXEHPVQAEBSWWK13TRBYX',
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP67D',
                 'menu_id'   => '01J9TD08T7GB79FPD1TGNBF3V2',
                 'name'      => 'Create',
                 'types'     => ['R', 'W', 'X'],
             ],
             [
-                'id'        => '01J9TWXKS7T0WSF4Z90BXFMBZQ',
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP67E',
                 'menu_id'   => '01J9TD08T7GB79FPD1TGNBF3V2',
                 'name'      => 'Detail',
                 'types'     => ['R', 'X'],
             ],
             [
-                'id'        => '01J9TWXST4F20FVBDJ4CBFBRHM',
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP67F',
                 'menu_id'   => '01J9TD08T7GB79FPD1TGNBF3V2',
                 'name'      => 'Edit',
                 'types'     => ['R', 'W', 'X'],
             ],
             [
-                'id'        => '01J9TWY08DS5XRKG5N29K1K0JE',
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP67G',
                 'menu_id'   => '01J9TD08T7GB79FPD1TGNBF3V2',
                 'name'      => 'Delete',
                 'types'     => ['R', 'W', 'X'],
             ],
             [
-                'id'        => '01J9TWYCEMSY260SK0N6T8K735',
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP67H',
                 'menu_id'   => '01J9TD08T7GB79FPD1TGNBF3V2',
                 'name'      => 'Export PDF',
                 'types'     => ['R', 'X'],
             ],
             [
-                'id'        => '01J9TWYK87FQWHHTY1PG4RC6TB',
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP67J',
                 'menu_id'   => '01J9TD08T7GB79FPD1TGNBF3V2',
                 'name'      => 'Export Excel',
                 'types'     => ['R', 'X'],
@@ -143,102 +159,112 @@ class PermissionSeeder extends Seeder
              * MENU PERMISSION MANAGEMENT
              */
             [
-                'id'        => '01J9WXQR8VWACBF2RA5EA71ZKZ',
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP67K',
                 'menu_id'   => '01J9TD4HAWFEPSPKFT43771W6K',
                 'name'      => 'Show On Sidebar',
                 'types'     => ['R'],
             ],
             [
-                'id'        => '01J9TWYY0F1TSKDRD7184BDJDV',
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP67M',
                 'menu_id'   => '01J9TD4HAWFEPSPKFT43771W6K',
                 'name'      => 'List Table',
                 'types'     => ['R'],
             ],
             [
-                'id'        => '01J9TWZ38DWFQ5W2XT5JM94WRG',
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP67N',
                 'menu_id'   => '01J9TD4HAWFEPSPKFT43771W6K',
                 'name'      => 'Create',
                 'types'     => ['R', 'W', 'X'],
             ],
             [
-                'id'        => '01J9TWZ80GV2ZQDPWTV5SSGBSD',
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP67P',
                 'menu_id'   => '01J9TD4HAWFEPSPKFT43771W6K',
                 'name'      => 'Detail',
                 'types'     => ['R', 'X'],
             ],
             [
-                'id'        => '01J9TWZD8HA1J2DSBRZDPSN8T4',
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP67Q',
                 'menu_id'   => '01J9TD4HAWFEPSPKFT43771W6K',
                 'name'      => 'Edit',
                 'types'     => ['R', 'W', 'X'],
             ],
             [
-                'id'        => '01J9TWZJB4MKPXZB6QFMA3V3M0',
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP67R',
                 'menu_id'   => '01J9TD4HAWFEPSPKFT43771W6K',
                 'name'      => 'Delete',
                 'types'     => ['R', 'W', 'X'],
             ],
             [
-                'id'        => '01J9TWZT1CKB89Y7XF1FVGEX8F',
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP67S',
                 'menu_id'   => '01J9TD4HAWFEPSPKFT43771W6K',
                 'name'      => 'Export PDF',
                 'types'     => ['R', 'X'],
             ],
             [
-                'id'        => '01J9TWZZ3NN2BG20SXX0HDCA0V',
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP67T',
                 'menu_id'   => '01J9TD4HAWFEPSPKFT43771W6K',
                 'name'      => 'Export Excel',
                 'types'     => ['R', 'X'],
             ],
 
             /**
+             * USER GROUP MANAGEMENT
+             */
+            [
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP67V',
+                'menu_id'   => '01J9WV5HECVNTMV8SJAPB1HBQJ',
+                'name'      => 'Show On Sidebar',
+                'types'     => ['R'],
+            ],
+
+            /**
              * USER MANAGEMENT
              */
             [
-                'id'        => '01J9WXR6WEG6FAWR32XPAYZJR4',
-                'menu_id'   => '01J9TCQ6G50TR26C8P5M7MRHM2',
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP67W',
+                'menu_id'   => '01J9WVKCD3BZH5N15BPZNCKHZB',
                 'name'      => 'Show On Sidebar',
                 'types'     => ['R'],
             ],
             [
-                'id'        => '01J9TX077NQY7Q1JGG5HM373FK',
-                'menu_id'   => '01J9TCQ6G50TR26C8P5M7MRHM2',
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP67X',
+                'menu_id'   => '01J9WVKCD3BZH5N15BPZNCKHZB',
                 'name'      => 'List Table',
                 'types'     => ['R'],
             ],
             [
-                'id'        => '01J9TX0D5BH84GZ9826XWZA8NB',
-                'menu_id'   => '01J9TCQ6G50TR26C8P5M7MRHM2',
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP67Y',
+                'menu_id'   => '01J9WVKCD3BZH5N15BPZNCKHZB',
                 'name'      => 'Create',
                 'types'     => ['R', 'W', 'X'],
             ],
             [
-                'id'        => '01J9TX0KV0Q7DC6R9ESYZB5SFP',
-                'menu_id'   => '01J9TCQ6G50TR26C8P5M7MRHM2',
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP67Z',
+                'menu_id'   => '01J9WVKCD3BZH5N15BPZNCKHZB',
                 'name'      => 'Detail',
                 'types'     => ['R'],
             ],
             [
-                'id'        => '01J9TX0T12X3MTJNXF43A5XA3D',
-                'menu_id'   => '01J9TCQ6G50TR26C8P5M7MRHM2',
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP680',
+                'menu_id'   => '01J9WVKCD3BZH5N15BPZNCKHZB',
                 'name'      => 'Edit',
                 'types'     => ['R', 'W', 'X'],
             ],
             [
-                'id'        => '01J9TX0ZBKJTPYCRNX130N1BXF',
-                'menu_id'   => '01J9TCQ6G50TR26C8P5M7MRHM2',
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP681',
+                'menu_id'   => '01J9WVKCD3BZH5N15BPZNCKHZB',
                 'name'      => 'Delete',
                 'types'     => ['R', 'W', 'X'],
             ],
             [
-                'id'        => '01J9TX14Q5D4SX4KW832F0CEGC',
-                'menu_id'   => '01J9TCQ6G50TR26C8P5M7MRHM2',
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP682',
+                'menu_id'   => '01J9WVKCD3BZH5N15BPZNCKHZB',
                 'name'      => 'Export PDF',
                 'types'     => ['R', 'X'],
             ],
             [
-                'id'        => '01J9TX1CXEVWWPESNZN2XER5FJ',
-                'menu_id'   => '01J9TCQ6G50TR26C8P5M7MRHM2',
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP683',
+                'menu_id'   => '01J9WVKCD3BZH5N15BPZNCKHZB',
                 'name'      => 'Export Excel',
                 'types'     => ['R', 'X'],
             ],
@@ -247,50 +273,208 @@ class PermissionSeeder extends Seeder
              * USER ROLE MANAGEMENT
              */
             [
-                'id'        => '01J9WXRNFPFYSDP4B39HZAV8ZC',
-                'menu_id'   => '01J9TD08T7GB79FPD1TGNBF3V2',
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP684',
+                'menu_id'   => '01J9WVKHA8HX5AM535P9DDX89A',
                 'name'      => 'Show On Sidebar',
                 'types'     => ['R'],
             ],
             [
-                'id'        => '01J9TX1PWSVRXHQHCZTGMAH70V',
-                'menu_id'   => '01J9TD08T7GB79FPD1TGNBF3V2',
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP685',
+                'menu_id'   => '01J9WVKHA8HX5AM535P9DDX89A',
                 'name'      => 'List Table',
                 'types'     => ['R'],
             ],
             [
-                'id'        => '01J9TX1W4F65ZTHCJNY5N4MZ65',
-                'menu_id'   => '01J9TD08T7GB79FPD1TGNBF3V2',
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP686',
+                'menu_id'   => '01J9WVKHA8HX5AM535P9DDX89A',
                 'name'      => 'Create',
                 'types'     => ['R', 'W', 'X'],
             ],
             [
-                'id'        => '01J9TX22PGTB8SND15Z60SMK8T',
-                'menu_id'   => '01J9TD08T7GB79FPD1TGNBF3V2',
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP687',
+                'menu_id'   => '01J9WVKHA8HX5AM535P9DDX89A',
                 'name'      => 'Detail',
                 'types'     => ['R', 'X'],
             ],
             [
-                'id'        => '01J9TX29F2SZENSZ54C7DPVHG0',
-                'menu_id'   => '01J9TD08T7GB79FPD1TGNBF3V2',
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP688',
+                'menu_id'   => '01J9WVKHA8HX5AM535P9DDX89A',
                 'name'      => 'Edit',
                 'types'     => ['R', 'W', 'X'],
             ],
             [
-                'id'        => '01J9TX2FGQJH2VF2WZ4MTJSJV6',
-                'menu_id'   => '01J9TD08T7GB79FPD1TGNBF3V2',
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP689',
+                'menu_id'   => '01J9WVKHA8HX5AM535P9DDX89A',
                 'name'      => 'Delete',
                 'types'     => ['R', 'W', 'X'],
             ],
             [
-                'id'        => '01J9TX2P7TN76XZHN51KJDRS24',
-                'menu_id'   => '01J9TD08T7GB79FPD1TGNBF3V2',
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP68A',
+                'menu_id'   => '01J9WVKHA8HX5AM535P9DDX89A',
                 'name'      => 'Export PDF',
                 'types'     => ['R', 'X'],
             ],
             [
-                'id'        => '01J9TX2WWHRGB3YNVRNX648HCD',
-                'menu_id'   => '01J9TD08T7GB79FPD1TGNBF3V2',
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP68B',
+                'menu_id'   => '01J9WVKHA8HX5AM535P9DDX89A',
+                'name'      => 'Export Excel',
+                'types'     => ['R', 'X'],
+            ],
+
+            /**
+             * CONTENT GROUP MANAGEMENT
+             */
+            [
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP68C',
+                'menu_id'   => '01JAYDNTYGJ4FVCT4JJHH0VBPG',
+                'name'      => 'Show On Sidebar',
+                'types'     => ['R'],
+            ],
+
+            /**
+             * CONTENT MANAGEMENT
+             */
+            [
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP68D',
+                'menu_id'   => '01JAYE1PC12Y439M0H891QGQQP',
+                'name'      => 'Show On Sidebar',
+                'types'     => ['R'],
+            ],
+            [
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP68E',
+                'menu_id'   => '01JAYE1PC12Y439M0H891QGQQP',
+                'name'      => 'List Table',
+                'types'     => ['R'],
+            ],
+            [
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP68F',
+                'menu_id'   => '01JAYE1PC12Y439M0H891QGQQP',
+                'name'      => 'Create',
+                'types'     => ['R', 'W', 'X'],
+            ],
+            [
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP68G',
+                'menu_id'   => '01JAYE1PC12Y439M0H891QGQQP',
+                'name'      => 'Detail',
+                'types'     => ['R', 'X'],
+            ],
+            [
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP68H',
+                'menu_id'   => '01JAYE1PC12Y439M0H891QGQQP',
+                'name'      => 'Edit',
+                'types'     => ['R', 'W', 'X'],
+            ],
+            [
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP68J',
+                'menu_id'   => '01JAYE1PC12Y439M0H891QGQQP',
+                'name'      => 'Delete',
+                'types'     => ['R', 'W', 'X'],
+            ],
+            [
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP68K',
+                'menu_id'   => '01JAYE1PC12Y439M0H891QGQQP',
+                'name'      => 'Export PDF',
+                'types'     => ['R', 'X'],
+            ],
+            [
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP68M',
+                'menu_id'   => '01JAYE1PC12Y439M0H891QGQQP',
+                'name'      => 'Export Excel',
+                'types'     => ['R', 'X'],
+            ],
+
+            /**
+             * CONTENT TYPE MANAGEMENT
+             */
+            [
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP68N',
+                'menu_id'   => '01JAYE29PKC4QC3V7J63K6Q1YJ',
+                'name'      => 'Show On Sidebar',
+                'types'     => ['R'],
+            ],
+            [
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP68P',
+                'menu_id'   => '01JAYE29PKC4QC3V7J63K6Q1YJ',
+                'name'      => 'List Table',
+                'types'     => ['R'],
+            ],
+            [
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP68Q',
+                'menu_id'   => '01JAYE29PKC4QC3V7J63K6Q1YJ',
+                'name'      => 'Create',
+                'types'     => ['R', 'W', 'X'],
+            ],
+            [
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP68R',
+                'menu_id'   => '01JAYE29PKC4QC3V7J63K6Q1YJ',
+                'name'      => 'Detail',
+                'types'     => ['R', 'X'],
+            ],
+            [
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP68S',
+                'menu_id'   => '01JAYE29PKC4QC3V7J63K6Q1YJ',
+                'name'      => 'Edit',
+                'types'     => ['R', 'W', 'X'],
+            ],
+            [
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP68T',
+                'menu_id'   => '01JAYE29PKC4QC3V7J63K6Q1YJ',
+                'name'      => 'Delete',
+                'types'     => ['R', 'W', 'X'],
+            ],
+            [
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP68V',
+                'menu_id'   => '01JAYE29PKC4QC3V7J63K6Q1YJ',
+                'name'      => 'Export PDF',
+                'types'     => ['R', 'X'],
+            ],
+            [
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP68W',
+                'menu_id'   => '01JAYE29PKC4QC3V7J63K6Q1YJ',
+                'name'      => 'Export Excel',
+                'types'     => ['R', 'X'],
+            ],
+
+            /**
+             * LOGS GROUP
+             */
+            [
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP68X',
+                'menu_id'   => '01JBVAFSDV4PC0H286P9KKBH2E',
+                'name'      => 'Show On Sidebar',
+                'types'     => ['R'],
+            ],
+
+            /**
+             * ACTIVITY LOGS
+             */
+            [
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP68Y',
+                'menu_id'   => '01JBVASX17ZHC4FS8GDXPW0GJH',
+                'name'      => 'Show On Sidebar',
+                'types'     => ['R'],
+            ],
+            [
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP68Z',
+                'menu_id'   => '01JBVASX17ZHC4FS8GDXPW0GJH',
+                'name'      => 'List Table',
+                'types'     => ['R'],
+            ],
+            [
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP690',
+                'menu_id'   => '01JBVASX17ZHC4FS8GDXPW0GJH',
+                'name'      => 'Detail',
+                'types'     => ['R', 'X'],
+            ],
+            [
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP691',
+                'menu_id'   => '01JBVASX17ZHC4FS8GDXPW0GJH',
+                'name'      => 'Export PDF',
+                'types'     => ['R', 'X'],
+            ],
+            [
+                'id'        => '01JDKB58YQNTN1HHF0TBKVP692',
+                'menu_id'   => '01JBVASX17ZHC4FS8GDXPW0GJH',
                 'name'      => 'Export Excel',
                 'types'     => ['R', 'X'],
             ],

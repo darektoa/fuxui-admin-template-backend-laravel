@@ -24,7 +24,8 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'roleId'        => 'required|max:26|exists:user_roles,id',
+            'roleId'        => 'nullable|array',
+            'roleId.*'      => 'nullable|max:26|exists:user_roles,id',
             'email'         => 'required|max:255|email|unique:users',
             'username'      => 'nullable|max:20|unique:users',
             'firstname'     => 'required|max:32',

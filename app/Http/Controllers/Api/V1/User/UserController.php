@@ -9,6 +9,7 @@ use App\Helpers\UsernameHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\V1\User\StoreRequest;
 use App\Http\Requests\V1\User\UpdateRequest;
+use App\Http\Resources\User\UserResource;
 use App\Models\Log\ActivityLog;
 use App\Models\User\User;
 use Illuminate\Http\Request;
@@ -16,6 +17,8 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public $pageName = "User";
+
     /**
      * Display a listing of the resource.
      */
@@ -69,10 +72,15 @@ class UserController extends Controller
     public function show(string $id)
     {
         try {
-            $user = User::with(['roles'])
+            $user = User::with([
+                    'profilePictures' => fn($query) => $query->latest(),
+                    'roles'
+                ])
                 ->find($id);
 
-            return ResponseHelper::make($user);
+            return ResponseHelper::make(
+                UserResource::make($user)
+            );
         } catch (ResponseException $exception) {
             return ResponseHelper::error($exception);
         }
@@ -84,6 +92,7 @@ class UserController extends Controller
     public function update(UpdateRequest $request, string $id)
     {
         try {
+            $password = $request->password;
             $user = User::find($id);
 
             if(! $user)
@@ -98,8 +107,8 @@ class UserController extends Controller
                     'birthPlace',
                     'phoneNumber',
                 ])
-                ->when(! Hash::check($request->password, $user->password), fn($collection) => (
-                    $collection->put('password', Hash::make($request->password))
+                ->when($password, fn($collection) => (
+                    $collection->put('password', Hash::make($password))
                 ));
 
             $user->update($data->toArray());

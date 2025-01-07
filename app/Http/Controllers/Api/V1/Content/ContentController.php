@@ -16,6 +16,8 @@ use Illuminate\Support\Str;
 
 class ContentController extends Controller
 {
+    public $pageName = "Content";
+
     /**
      * Display a listing of the resource.
      */
@@ -76,6 +78,9 @@ class ContentController extends Controller
     {
         try {
             $content = Content::find($id);
+
+            if(! $content)
+                throw new ResponseException('Content not found', 404);
 
             return ResponseHelper::make(
                 ContentResource::make($content)
