@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 class StorageHelper {
     /**
      * Put file to storage
-     * 
+     *
      * @param string $path
      * @param \Illuminate\Http\UploadedFile $file
      * @param string $disk
@@ -22,19 +22,19 @@ class StorageHelper {
             $ext = $file->getClientOriginalExtension();
             $filename = Str::uuid() . ".$ext";
             $pathname = "$path/$filename";
-    
+
             Storage::disk($disk)->put($pathname, $file->getContent());;
-    
+
             return $pathname;
         } catch(Exception $err) {
             return null;
         }
     }
-    
-    
+
+
     /**
      * Put file to public storage
-     * 
+     *
      * @param string $path
      * @return string|null
      */
@@ -46,7 +46,7 @@ class StorageHelper {
 
     /**
      * Delete file from storage
-     * 
+     *
      * @param string $path
      * @param string $disk
      * @return bool
@@ -55,11 +55,11 @@ class StorageHelper {
     {
         return Storage::disk($disk)->delete($path);
     }
-    
-    
+
+
     /**
      * Delete file from public storage
-     * 
+     *
      * @param string $path
      * @return bool
      */
@@ -71,7 +71,7 @@ class StorageHelper {
 
     /**
      * Get file from storage
-     * 
+     *
      * @param string $path
      * @param string $disk
      * @return string|null
@@ -84,7 +84,7 @@ class StorageHelper {
 
     /**
      * Get file from storage
-     * 
+     *
      * @param string $path
      * @return string|null
      */
@@ -96,19 +96,19 @@ class StorageHelper {
 
     /**
      * Get path url of the file from storage
-     * 
+     *
      * @param string|null $path
      * @return string
      */
     public static function path(string | null $path = '')
     {
-        return Storage::url($path);
+        return str(Storage::url($path))->replaceFirst('storage/', 'storages/');
     }
 
 
     /**
      * Get full web url of the file from storage
-     * 
+     *
      * @param string|null $path
      * @return string
      */
